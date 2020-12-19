@@ -22,6 +22,14 @@ $router->group(['prefix' => 'customers', 'middleware' => 'auth'], function () us
     $router->post('/{customer}', 'CustomerController@update');
 });
 
+// Booking Endpoints
+$router->group(['prefix' => 'bookings', 'middleware' => 'auth'], function () use ($router){
+    $router->get('/', 'BookingController@index');
+    $router->get('/{booking}', 'BookingController@show');
+    $router->post('/{booking}/pay', 'BookingController@pay');
+    $router->post('/', 'BookingController@store');
+    $router->post('/{booking}/checkout', 'BookingController@checkout');
+});
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
