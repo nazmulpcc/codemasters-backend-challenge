@@ -38,10 +38,14 @@ class AuthController extends Controller
                 'access_token' => $token,
                 'token_type' => 'bearer',
                 'expires_at' => time() + $this->guard()->factory()->getTTL() * 60
+            ], [
+                'access_token' => $token,
+                'token_type' => 'bearer',
+                'expires_at' => time() + $this->guard()->factory()->getTTL() * 60
             ]);
         }
 
-        return response()->json(['error' => 'Unauthorized'], 401);
+        return $this->failed(null, 'Unauthorized', 401);
     }
 
     /**
@@ -72,6 +76,6 @@ class AuthController extends Controller
         $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
 
-        return $this->success('New Admin has been created', $user);
+        return $this->success($user, 'New Admin has been created');
     }
 }
