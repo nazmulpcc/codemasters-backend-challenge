@@ -57,6 +57,7 @@ class BookingController extends Controller
             ]);
         }
         $booking->load(['customer', 'room', 'payments']);
+        $booking->append(['due_amount', 'paid_amount']);
 
         return $this->success($booking);
     }
