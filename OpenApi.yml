@@ -1,0 +1,258 @@
+---
+openapi: 3.0.3
+info:
+  title: CoderByte Challenge
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: "http://127.0.0.1:8000"
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login
+      description: Login
+      operationId: login
+      parameters:
+        - name: email
+          in: query
+          schema:
+            type: string
+            example: admin@admin.com
+        - name: password
+          in: query
+          schema:
+            type: string
+            example: secret
+      responses:
+        "200":
+          description: ""
+  /auth/logout:
+    post:
+      tags:
+        - Auth
+      summary: Logout
+      description: Logout
+      operationId: logout
+      responses:
+        "200":
+          description: ""
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register
+      description: Register
+      operationId: register
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+            example: Admin People
+        - name: email
+          in: query
+          schema:
+            type: string
+            example: people@admin.com
+        - name: password
+          in: query
+          schema:
+            type: string
+            example: secret
+      responses:
+        "200":
+          description: ""
+  /bookings:
+    get:
+      tags:
+        - Bookings
+      summary: Index
+      description: Index
+      operationId: index2
+      responses:
+        "200":
+          description: ""
+    post:
+      tags:
+        - Bookings
+      summary: Create
+      description: Create
+      operationId: create1
+      parameters:
+        - name: room_number
+          in: query
+          schema:
+            type: string
+            example: "101"
+        - name: customer_id
+          in: query
+          schema:
+            type: string
+            example: "1"
+        - name: type
+          in: query
+          schema:
+            type: string
+            example: general
+        - name: amount_paid
+          in: query
+          schema:
+            type: string
+            example: "50"
+        - name: arrived_at
+          in: query
+          schema:
+            type: string
+            example: "2020-12-19 12:00:00"
+      responses:
+        "200":
+          description: ""
+  /bookings/1:
+    get:
+      tags:
+        - Bookings
+      summary: Show
+      description: Show
+      operationId: show2
+      responses:
+        "200":
+          description: ""
+  /bookings/1/checkout:
+    post:
+      tags:
+        - Bookings
+      summary: Checkout
+      description: Checkout
+      operationId: checkout
+      parameters:
+        - name: amount_paid
+          in: query
+          schema:
+            type: string
+            example: "50"
+      responses:
+        "200":
+          description: ""
+  /bookings/1/pay:
+    post:
+      tags:
+        - Bookings
+      summary: Add Payment
+      description: Add Payment
+      operationId: addPayment
+      parameters:
+        - name: amount
+          in: query
+          schema:
+            type: string
+            example: "50"
+      responses:
+        "200":
+          description: ""
+  /customers:
+    get:
+      tags:
+        - Customers
+      summary: Index
+      description: Index
+      operationId: index1
+      responses:
+        "200":
+          description: ""
+    post:
+      tags:
+        - Customers
+      summary: Create
+      description: Create
+      operationId: create
+      parameters:
+        - name: first_name
+          in: query
+          schema:
+            type: string
+            example: Nazmul
+        - name: last_name
+          in: query
+          schema:
+            type: string
+            example: Alam
+        - name: email
+          in: query
+          schema:
+            type: string
+            example: nazmulpcc@gmail.com
+        - name: phone
+          in: query
+          schema:
+            type: string
+            example: "01700000000"
+      responses:
+        "200":
+          description: ""
+  /customers/1:
+    get:
+      tags:
+        - Customers
+      summary: Show
+      description: Show
+      operationId: show1
+      responses:
+        "200":
+          description: ""
+    post:
+      tags:
+        - Customers
+      summary: Update
+      description: Update
+      operationId: update
+      parameters:
+        - name: first_name
+          in: query
+          schema:
+            type: string
+            example: Nazmul
+        - name: last_name
+          in: query
+          schema:
+            type: string
+            example: Alam
+        - name: email
+          in: query
+          schema:
+            type: string
+            example: nazmulpcc@gmail.com
+        - name: phone
+          in: query
+          schema:
+            type: string
+            example: "01700000001"
+      responses:
+        "200":
+          description: ""
+  /rooms:
+    get:
+      tags:
+        - Rooms
+      summary: Index
+      description: Index
+      operationId: index
+      responses:
+        "200":
+          description: ""
+  /rooms/1:
+    get:
+      tags:
+        - Rooms
+      summary: Show
+      description: Show
+      operationId: show
+      responses:
+        "200":
+          description: ""
+tags:
+  - name: Auth
+  - name: Rooms
+  - name: Customers
+  - name: Bookings
